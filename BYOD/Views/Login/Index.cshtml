@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Apple devices fullscreen -->
+    <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <title>Login</title>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap.min.css")">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/style.css")">
+    
+    <!-- jQuery -->
+    <script src="@Url.Content("~/Content/js/jquery.min.js")"></script>
+
+    <!-- Bootstrap -->
+    <script src="@Url.Content("~/Content/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+</head>
+<body class="login">
+    <div class="wrapper">
+        <div class="login-body">
+            <h2>SIGN IN</h2>
+            @Html.ValidationSummary(true, "Login was unsuccessful..", new { @style="color: red; margin:0px 30px;" })
+            @using (Html.BeginForm(new { @class = "form-validate", id="test"})) {
+            @*<form class="form-validate" id="test" novalidate="novalidate">*@
+                <div class="control-group">
+                    <div class="email controls">
+                        @Html.TextBox("username",null, new { @class = "input-block-level", placeholder="User name"})
+                        @Html.ValidationMessage("username")
+                        @*<input type="text" name="uus" placeholder="User name" class="input-block-level" data-rule-required="true" data-rule-email="true">*@
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="pw controls">
+                        @Html.Password("password",null, new { @class = "input-block-level", placeholder="Password"})
+                        @Html.ValidationMessage("password")
+                        @*<input type="password" name="upw" placeholder="Password" class="input-block-level" data-rule-required="true">*@
+                    </div>
+                </div>
+                <div class="submit">
+                    <input type="submit" value="Sign in" class="btn btn-primary">
+                </div>
+                <div>&nbsp;</div>
+            @*</form>*@
+            }
+        </div>
+</body>
+</html>

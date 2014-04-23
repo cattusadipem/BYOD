@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Remote Access";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<script>
+    $(document).on(' change', 'input[name="check_all"]', function () {
+        $('.checkbox').prop("checked", this.checked);
+    });
+
+    $(document).ready(function ($) {
+        $('#my_table').dynatable();
+    });
+</script>
+<div class="container-fluid">
+    <div class="page-header">
+        <div>
+
+            <div class="widget">
+                <h3 class="section-title first-title"><i class="icon-table"></i>Files Shared Manager</h3>
+                <div class="widget-content-white glossed">
+                    <div class="padded">
+                        <table id="my_table" class="table table-striped table-bordered table-hover datatable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div>
+                                            <input class="checkbox" type="checkbox" name="check_all"></div>
+                                    </th>
+                                    <th>List Files</th>
+                                    <th>Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <input class="checkbox" name="checked" type="checkbox"></div>
+                                    </td>
+                                    <td>Software testing.pdf</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class='btn btn-default btn-small'><i class="icon-book"></i>Delete</a>
+                                            <a style="height: 20px;" class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" href=""><span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="" onclick="return checkMe()"><i class="icon-trash"></i>Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <input class="checkbox" name="checked" type="checkbox"></div>
+                                    </td>
+                                    <td>Team Work.docs</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class='btn btn-default btn-small'><i class="icon-book"></i>Delete</a>
+                                            <a style="height: 20px;" class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" href=""><span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="" onclick="return checkMe()"><i class="icon-trash"></i>Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <input class="checkbox" name="checked" type="checkbox"></div>
+                                    </td>
+                                    <td>PHP Develope.pdf</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class='btn btn-default btn-small'><i class="icon-book"></i>Delete</a>
+                                            <a style="height: 20px;" class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" href=""><span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="" onclick="return checkMe()"><i class="icon-trash"></i>Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <input class="checkbox" name="checked" type="checkbox"></div>
+                                    </td>
+                                    <td>MVC 4 & Entity Framwor.pdfk</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class='btn btn-default btn-small'><i class="icon-book"></i>Delete</a>
+                                            <a style="height: 20px;" class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" href=""><span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="" onclick="return checkMe()"><i class="icon-trash"></i>Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @*<input style="margin-top:10px;" type="text" placeholder="Upload here" />*@
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Upload</button>
+                        <input type="file" class="btn btn-primary" value="Upload">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>

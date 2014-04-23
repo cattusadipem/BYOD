@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BYODModelStoreContainer" CdmEntityContainer="BYODEntities">
+    <EntitySetMapping Name="APPLICATIONS">
+      <EntityTypeMapping TypeName="BYODModel.APPLICATIONS">
+        <MappingFragment StoreEntitySet="APPLICATIONS">
+          <ScalarProperty Name="app_id" ColumnName="app_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="apk_name" ColumnName="apk_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEVICES">
+      <EntityTypeMapping TypeName="BYODModel.DEVICES">
+        <MappingFragment StoreEntitySet="DEVICES">
+          <ScalarProperty Name="device_id" ColumnName="device_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="imei" ColumnName="imei" />
+          <ScalarProperty Name="platform" ColumnName="platform" />
+          <ScalarProperty Name="last_login_time" ColumnName="last_login_time" />
+          <ScalarProperty Name="date_added" ColumnName="date_added" />
+          <ScalarProperty Name="date_stolen" ColumnName="date_stolen" />
+          <ScalarProperty Name="isstolen" ColumnName="isstolen" />
+          <ScalarProperty Name="isremove" ColumnName="isremove" />
+          <ScalarProperty Name="date_remove" ColumnName="date_remove" />
+          <ScalarProperty Name="iswipe" ColumnName="iswipe" />
+          <ScalarProperty Name="date_wipe" ColumnName="date_wipe" />
+          <ScalarProperty Name="reg_id" ColumnName="reg_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RECENT_LOCATION">
+      <EntityTypeMapping TypeName="BYODModel.RECENT_LOCATION">
+        <MappingFragment StoreEntitySet="RECENT_LOCATION">
+          <ScalarProperty Name="recent_location_id" ColumnName="recent_location_id" />
+          <ScalarProperty Name="device_id" ColumnName="device_id" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longtitude" ColumnName="longtitude" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RULES">
+      <EntityTypeMapping TypeName="BYODModel.RULES">
+        <MappingFragment StoreEntitySet="RULES">
+          <ScalarProperty Name="rules_id" ColumnName="rules_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="allow_copy_paste" ColumnName="allow_copy_paste" />
+          <ScalarProperty Name="allow_email" ColumnName="allow_email" />
+          <ScalarProperty Name="allow_camera" ColumnName="allow_camera" />
+          <ScalarProperty Name="allow_microphone" ColumnName="allow_microphone" />
+          <ScalarProperty Name="allow_airplan_mode" ColumnName="allow_airplan_mode" />
+          <ScalarProperty Name="allow_screen_capture" ColumnName="allow_screen_capture" />
+          <ScalarProperty Name="allow_clipboard" ColumnName="allow_clipboard" />
+          <ScalarProperty Name="allow_home_key" ColumnName="allow_home_key" />
+          <ScalarProperty Name="dowload_type" ColumnName="dowload_type" />
+          <ScalarProperty Name="allow_share" ColumnName="allow_share" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RULES_APP">
+      <EntityTypeMapping TypeName="BYODModel.RULES_APP">
+        <MappingFragment StoreEntitySet="RULES_APP">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="rules_id" ColumnName="rules_id" />
+          <ScalarProperty Name="app_id" ColumnName="app_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BYODModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="BYODModel.USERS">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="rules_id" ColumnName="rules_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,132 @@
+﻿@model IEnumerable<BYOD.Models.USERS>
+@*@model BYOD.ViewModels.UserViewModel*@
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<script>
+    $(document).on(' change', 'input[name="check_all"]', function () {
+        $('.checkbox').prop("checked", this.checked);
+    });
+    $(document).ready(function ($) {
+        $('#my_table').dynatable();
+        $(".delSelected").click(function () {
+            if (!confirm("Do you want to delete these seleted?")) {
+                return false;
+            }
+            else $('#theform').submit();
+        });
+        $('.delete').click(function () {
+            if (!confirm($(this).data('confirm'))) {
+                return false;
+            }
+
+            var token = $(':input:hidden[name*="RequestVerificationToken"]');
+            var data = {};
+            data[token.attr('name')] = token.val();
+            $.ajax({
+                url: this.href,
+                type: 'POST',
+                data: data,
+                success: function (result) {
+                    window.location.reload();
+                },
+                error: function () {
+
+                }
+            });
+
+            return false;
+        });
+    });
+</script>
+<div id="left" class="ui-sortable ui-resizable">
+    <div style="height: 80px"></div>
+    <div class="subnav">
+        <ul class="subnav-menu">
+            <li>
+                <a href="@Url.Content("~/Users/AddUser")">Add user</a>
+            </li>
+            <div style="height: 20px"></div>
+            <li>
+                <a href="#" class="delSelected">Delete Selected </a>
+            </li>
+        </ul>
+    </div>
+    <div class="ui-resizable-handle ui-resizable-e" style="z-index: 90; height: 401px;"></div>
+</div>
+<div id="main">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+
+                <div class="widget">
+                    <h3 class="section-title first-title"><i class="icon-table"></i>Users</h3>
+                    <div class="widget-content-white glossed">
+                        <div class="padded">
+                            @using (@Html.BeginForm("DeleteSelectedUser", "Users", FormMethod.Post, new { id = "theform" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            <table id="my_table" class="table table-striped table-bordered table-hover datatable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div>
+                                                <input class="checkbox" type="checkbox" name="check_all"></div>
+                                        </th>
+                                        <th>Username</th>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Rule</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {    
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <input class="checkbox" name="userIdToDelete" type="checkbox" value="@item.user_id">
+                                                </div>
+                                            </td>
+                                            <td>@Html.DisplayFor(modelItem => item.username)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.name)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.email)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.RULES.name)</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    @Html.ActionLink("View", "Details", "Users", new { id = item.user_id }, new { @class = "btn btn-default btn-small" })
+                                                    <a style="height: 20px;" class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" href=""><span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>@Html.ActionLink("Edit", "EditUser", new { id = item.user_id })</li>
+                                                        <li>
+                                                            @Html.ActionLink(
+                                                                "Delete",
+                                                                "DeleteUser",
+                                                                "Users",
+                                                                new
+                                                                {
+                                                                    id = item.user_id
+                                                                },
+                                                                new
+                                                                {
+                                                                    @class = "delete",
+                                                                    data_confirm = "Are You sure You want to delete (" + item.username.ToString() + ") ?"
+                                                                }
+                                                            )
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }                                    
+                                </tbody>
+                            </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

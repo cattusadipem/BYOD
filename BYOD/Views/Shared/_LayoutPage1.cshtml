@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- Style -->
+    <!-- Table -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/jspkg-archive/jquery.dynatable.css")">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap.min.css")">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/style.css")">
+    <!-- jQuery -->
+    <script src="@Url.Content("~/Content/js/jquery.min.js")"></script>
+
+    <!-- Bootstrap -->
+    <script src="@Url.Content("~/Content/js/bootstrap.min.js")"></script>
+    <!-- Table -->
+    <script src="@Url.Content("~/Content/jspkg-archive/jquery.dynatable.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.10.4.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.10.4.min.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div id="navigation" style="z-index: 1000;">
+        <div class="container-fluid">
+            <a href="#" id="brand">BYOD</a>
+            <a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="" data-original-title="Toggle navigation"><i class="icon-reorder"></i></a>
+            <ul class="main-nav">
+                <li @{if (ViewBag.Title == "Dashboard")
+                      {<text>class="active"</text>}}>
+                    <a href="@Url.Content("~/Dashboard/")">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li @{if (ViewBag.Title == "Devices")
+                      {<text>class="active"</text>}}>
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle">
+                        <span>Devices</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Content("~/Devices/")">List</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Devices/AddDevice")">Add new</a>
+                        </li>
+                    </ul>
+                </li>
+                <li @{if (ViewBag.Title == "Rules")
+                      {<text>class="active"</text>}}>
+                    <a href="@Url.Content("~/Rules/")" data-toggle="dropdown" class="dropdown-toggle">
+                        <span>Rules</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Content("~/Rules/")">Rules</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Rules/AddRule")">Add rule</a>
+                        </li>
+                    </ul>
+                </li>
+                <li @{if (ViewBag.Title == "Remote Access")
+                      {<text>class="active"</text>}}>
+                    <a href="@Url.Content("~/FileShared/")">
+                        <span>Files Shared</span>
+                    </a>
+                </li>
+                <li @{if (ViewBag.Title == "Users")
+                      {<text>class="active"</text>}}>
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle">
+                        <span>Users</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Content("~/Users/")">List</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Users/AddUser")">Add new</a>
+                        </li>
+                    </ul>
+                </li>
+                <li @{if (ViewBag.Title == "Reports")
+                      {<text>class="active"</text>}}>
+                    <a href="@Url.Content("~/Reports/")">
+                        <span>Reports</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="user">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin</a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="more-userprofile.html">Edit profile</a>
+                        </li>
+                        <li>
+                            <a href="#">Account settings</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Sign Out", "Logout", "Login")
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        @RenderBody()
+    </div>
+</body>
+</html>

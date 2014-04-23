@@ -1,0 +1,213 @@
+﻿@model IEnumerable<BYOD.Models.APPLICATIONS>
+@*@model BYOD.Models.APPLICATIONS*@
+@{
+    ViewBag.Title = "AddRules";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<script>
+    $(document).on('change', 'input[name="check_all"]', function () {
+        $('.checkbox').prop("checked", this.checked);
+    });
+</script>
+<div class="container-fluid">
+    <div class="page-header">
+        <div>
+            <div class="widget">
+                <h3 class="section-title first-title"><i class="icon-table"></i>Add Rule</h3>
+                <div class="widget-content-white glossed">
+                    <div class="padded">
+                     @using (Html.BeginForm()) 
+                       {
+                        <form class="form-validate" id="test" novalidate="novalidate              
+                            <div class="a_dv">
+                                <div id="p_element">
+                                 
+                                      @Html.AntiForgeryToken()
+                                      @Html.ValidationSummary(true)
+                                    <div>
+                                        <div>
+                                            <label>Rule Name</label>                                           
+                                             @Html.TextBox("name",null,new { style="width: 286px;", placeholder="Rule name" } )
+                                  
+                                             @*@Html.TextBoxFor(model => model.name, new { style="width: 286px;", placeholder="name" } )*@
+                                            @*<input style="width: 286px;" type="search" name="uus" placeholder="Username">*@                       
+                                        </div>
+                                        <div class="r_add_element">
+                                            <div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span><i>Check All</i></span>                                                     
+                                                        <input type="checkbox" name="check_all">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h4>General </h4>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span>Disable Copy & Paste</span>
+                                                        @Html.CheckBox("allow_copy_paste")
+                                                      @*  <input class="checkbox" name="allow_copy_paste" type="checkbox*@
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h4>Email: </h4>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span>Allow to access email</span>
+                                                        @Html.CheckBox("allow_email")
+                                                        @*<input class="checkbox" name="checked" type="checkbox">*@
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h4>Restriction: </h4>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span>Allow Camera</span>
+                                                        @Html.CheckBox("allow_camera")
+                                                        @*<input class="checkbox" name="checked" type="checkbox">*@
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span>Allow Microphone</span>
+                                                        @Html.CheckBox("allow_microphone")
+                                                        @*<input class="checkbox" name="checked" type="checkbox">*@
+                                                    </label>
+                                                </div>				
+										</div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span>Allow Airplane Mode</span>
+                                                        @Html.CheckBox("allow_airplan_mode")
+                                                        @*<input class="checkbox" name="checked" type="checkbox">*@
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span>Allow Screen Capture</span>
+                                                        @Html.CheckBox("allow_screen_capture")
+                                                        @*<input class="checkbox" name="checked" type="checkbox">*@
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span>Allow Clipboard</span>
+                                                        @Html.CheckBox("allow_clipboard")
+                                                        @*<input class="checkbox" name="checked" type="checkbox">*@
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span>Allow Home Key</span>
+                                                        @Html.CheckBox("allow_home_key")
+                                                        @*<input class="checkbox" name="checked" type="checkbox">*@
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="r_add_element">
+                                            <div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span><i>&nbsp;</i></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h4>Download Type </h4>
+                                                <div class="checkbox">                                         
+                                                    <label>
+                                                       @Html.DropDownList("dowload_type", new SelectList(
+                                                                                          new List<Object>{ 
+                                                                                                            new { value = 0 , text = "Manually by user"  },
+                                                                                                            new { value = 1 , text = "Automatically push" },
+                                                                                                          },"value","text",2))
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                 <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th><h4>Application</h4></th>
+                                                    </tr>
+                                                </thead>
+                                                @foreach (var item in Model)
+                                                {
+                                                <tbody>
+                                                    
+                                                    <tr>
+                                                        <td>                                                            
+                                                            
+                                                            @*@Html.DisplayFor(modelItem => item.name)*@     
+                                                            <input type="checkbox" class="chk-act" value="@item.app_id" name="cbox" />
+                                                                <text>@item.name</text>  
+                                                          @*  @Html.HiddenFor(model) *@
+                                                              @*@Html.CheckBox("app_id")<text>@item.name</text> *@                                              
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                </tbody>
+                                                }
+                                            </table>
+                                                  @*     <table>
+                                                        <tr>
+                                                            @{
+                                                                int cnt = 0;                                                          
+                                                                foreach (var course in Model)
+                                                                {
+                                                                    if (cnt++ % 3 == 0)
+                                                                    {
+                                                                        @:</tr><tr>
+                                                                    }
+                                                                    @:<td>
+                                                                        <input type="checkbox"
+                                                                            name="selectedCourses"
+                                                                            value="@course.app_id"
+                                                                            @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                                                            @course.name
+                                                                    @:</td>
+                                                                }
+                                                                @:</tr>
+                                                            }
+                                                    </table>*@
+                                                @*<h4>Application </h4>                                             
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @foreach (var item in Model)
+                                                            {
+                                                                <span>@Html.DisplayFor(modelItem => item.name)</span>
+                                                                @Html.CheckBox("status")
+                                                            }
+                                                        </label>
+                                                         
+                                                </div>*@
+                                            </div>
+                                            <div>
+                                                <h4>Shared Folder </h4>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <span>Allow Access</span>
+                                                        @Html.CheckBox("allow_share")
+                                                        @*<input class="checkbox" name="checked" type="checkbox">*@
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>                                  
+                                    <div style="clear: left;"></div>                  
+                                </div>
+                                <div>&nbsp;</div>
+                                <div class="submit">
+                                    <input type="submit" value="Save" class="btn btn-primary">
+                                    <input type="submit" value="Refresh" class="btn btn-default">
+                              </div>
+                        </form>
+                       }
+                         </div>
+                </div>
+            </div>
+        </div>

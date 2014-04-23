@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BYODModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="BYODModelStoreContainer">
+          <EntitySet Name="APPLICATIONS" EntityType="BYODModel.Store.APPLICATIONS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DEVICES" EntityType="BYODModel.Store.DEVICES" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RECENT_LOCATION" EntityType="BYODModel.Store.RECENT_LOCATION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RULES" EntityType="BYODModel.Store.RULES" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RULES_APP" EntityType="BYODModel.Store.RULES_APP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="BYODModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="USERS" EntityType="BYODModel.Store.USERS" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DEVICES_USERS" Association="BYODModel.Store.FK_DEVICES_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="DEVICES" EntitySet="DEVICES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECENT_LOCATION_DEVICES" Association="BYODModel.Store.FK_RECENT_LOCATION_DEVICES">
+            <End Role="DEVICES" EntitySet="DEVICES" />
+            <End Role="RECENT_LOCATION" EntitySet="RECENT_LOCATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RULES_APP_APPLICATIONS" Association="BYODModel.Store.FK_RULES_APP_APPLICATIONS">
+            <End Role="APPLICATIONS" EntitySet="APPLICATIONS" />
+            <End Role="RULES_APP" EntitySet="RULES_APP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RULES_APP_RULES" Association="BYODModel.Store.FK_RULES_APP_RULES">
+            <End Role="RULES" EntitySet="RULES" />
+            <End Role="RULES_APP" EntitySet="RULES_APP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERS_RULES" Association="BYODModel.Store.FK_USERS_RULES">
+            <End Role="RULES" EntitySet="RULES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="APPLICATIONS">
+          <Key>
+            <PropertyRef Name="app_id" />
+          </Key>
+          <Property Name="app_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="apk_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DEVICES">
+          <Key>
+            <PropertyRef Name="device_id" />
+          </Key>
+          <Property Name="device_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="phone_number" Type="int" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="status" Type="bit" />
+          <Property Name="model" Type="varchar" MaxLength="50" />
+          <Property Name="imei" Type="varchar" MaxLength="50" />
+          <Property Name="platform" Type="varchar" MaxLength="50" />
+          <Property Name="last_login_time" Type="date" />
+          <Property Name="date_added" Type="date" />
+          <Property Name="date_stolen" Type="date" />
+          <Property Name="isstolen" Type="bit" />
+          <Property Name="isremove" Type="bit" />
+          <Property Name="date_remove" Type="date" />
+          <Property Name="iswipe" Type="bit" />
+          <Property Name="date_wipe" Type="date" />
+          <Property Name="reg_id" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="RECENT_LOCATION">
+          <Key>
+            <PropertyRef Name="recent_location_id" />
+          </Key>
+          <Property Name="recent_location_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="device_id" Type="int" />
+          <Property Name="latitude" Type="varchar" MaxLength="50" />
+          <Property Name="longtitude" Type="varchar" MaxLength="50" />
+          <Property Name="date" Type="date" />
+        </EntityType>
+        <EntityType Name="RULES">
+          <Key>
+            <PropertyRef Name="rules_id" />
+          </Key>
+          <Property Name="rules_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="allow_copy_paste" Type="bit" />
+          <Property Name="allow_email" Type="bit" />
+          <Property Name="allow_camera" Type="bit" />
+          <Property Name="allow_microphone" Type="bit" />
+          <Property Name="allow_airplan_mode" Type="bit" />
+          <Property Name="allow_screen_capture" Type="bit" />
+          <Property Name="allow_clipboard" Type="bit" />
+          <Property Name="allow_home_key" Type="bit" />
+          <Property Name="dowload_type" Type="int" />
+          <Property Name="allow_share" Type="bit" />
+        </EntityType>
+        <EntityType Name="RULES_APP">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="rules_id" Type="int" />
+          <Property Name="app_id" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="rules_id" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_DEVICES_USERS">
+          <End Role="USERS" Type="BYODModel.Store.USERS" Multiplicity="0..1" />
+          <End Role="DEVICES" Type="BYODModel.Store.DEVICES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="DEVICES">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECENT_LOCATION_DEVICES">
+          <End Role="DEVICES" Type="BYODModel.Store.DEVICES" Multiplicity="0..1" />
+          <End Role="RECENT_LOCATION" Type="BYODModel.Store.RECENT_LOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEVICES">
+              <PropertyRef Name="device_id" />
+            </Principal>
+            <Dependent Role="RECENT_LOCATION">
+              <PropertyRef Name="device_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RULES_APP_APPLICATIONS">
+          <End Role="APPLICATIONS" Type="BYODModel.Store.APPLICATIONS" Multiplicity="0..1" />
+          <End Role="RULES_APP" Type="BYODModel.Store.RULES_APP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICATIONS">
+              <PropertyRef Name="app_id" />
+            </Principal>
+            <Dependent Role="RULES_APP">
+              <PropertyRef Name="app_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RULES_APP_RULES">
+          <End Role="RULES" Type="BYODModel.Store.RULES" Multiplicity="0..1" />
+          <End Role="RULES_APP" Type="BYODModel.Store.RULES_APP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RULES">
+              <PropertyRef Name="rules_id" />
+            </Principal>
+            <Dependent Role="RULES_APP">
+              <PropertyRef Name="rules_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERS_RULES">
+          <End Role="RULES" Type="BYODModel.Store.RULES" Multiplicity="0..1" />
+          <End Role="USERS" Type="BYODModel.Store.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RULES">
+              <PropertyRef Name="rules_id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="rules_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BYODModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BYODEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="APPLICATIONS" EntityType="BYODModel.APPLICATIONS" />
+          <EntitySet Name="DEVICES" EntityType="BYODModel.DEVICES" />
+          <EntitySet Name="RECENT_LOCATION" EntityType="BYODModel.RECENT_LOCATION" />
+          <EntitySet Name="RULES" EntityType="BYODModel.RULES" />
+          <EntitySet Name="RULES_APP" EntityType="BYODModel.RULES_APP" />
+          <EntitySet Name="sysdiagrams" EntityType="BYODModel.sysdiagrams" />
+          <EntitySet Name="USERS" EntityType="BYODModel.USERS" />
+          <AssociationSet Name="FK_RULES_APP_APPLICATIONS" Association="BYODModel.FK_RULES_APP_APPLICATIONS">
+            <End Role="APPLICATIONS" EntitySet="APPLICATIONS" />
+            <End Role="RULES_APP" EntitySet="RULES_APP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEVICES_USERS" Association="BYODModel.FK_DEVICES_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="DEVICES" EntitySet="DEVICES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECENT_LOCATION_DEVICES" Association="BYODModel.FK_RECENT_LOCATION_DEVICES">
+            <End Role="DEVICES" EntitySet="DEVICES" />
+            <End Role="RECENT_LOCATION" EntitySet="RECENT_LOCATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RULES_APP_RULES" Association="BYODModel.FK_RULES_APP_RULES">
+            <End Role="RULES" EntitySet="RULES" />
+            <End Role="RULES_APP" EntitySet="RULES_APP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERS_RULES" Association="BYODModel.FK_USERS_RULES">
+            <End Role="RULES" EntitySet="RULES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="APPLICATIONS">
+          <Key>
+            <PropertyRef Name="app_id" />
+          </Key>
+          <Property Name="app_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="apk_name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RULES_APP" Relationship="BYODModel.FK_RULES_APP_APPLICATIONS" FromRole="APPLICATIONS" ToRole="RULES_APP" />
+        </EntityType>
+        <EntityType Name="DEVICES">
+          <Key>
+            <PropertyRef Name="device_id" />
+          </Key>
+          <Property Name="device_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="phone_number" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="model" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="imei" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="platform" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="last_login_time" Type="DateTime" Precision="0" />
+          <Property Name="date_added" Type="DateTime" Precision="0" />
+          <Property Name="date_stolen" Type="DateTime" Precision="0" />
+          <Property Name="isstolen" Type="Boolean" />
+          <Property Name="isremove" Type="Boolean" />
+          <Property Name="date_remove" Type="DateTime" Precision="0" />
+          <Property Name="iswipe" Type="Boolean" />
+          <Property Name="date_wipe" Type="DateTime" Precision="0" />
+          <Property Name="reg_id" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="USERS" Relationship="BYODModel.FK_DEVICES_USERS" FromRole="DEVICES" ToRole="USERS" />
+          <NavigationProperty Name="RECENT_LOCATION" Relationship="BYODModel.FK_RECENT_LOCATION_DEVICES" FromRole="DEVICES" ToRole="RECENT_LOCATION" />
+        </EntityType>
+        <EntityType Name="RECENT_LOCATION">
+          <Key>
+            <PropertyRef Name="recent_location_id" />
+          </Key>
+          <Property Name="recent_location_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="device_id" Type="Int32" />
+          <Property Name="latitude" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="longtitude" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DEVICES" Relationship="BYODModel.FK_RECENT_LOCATION_DEVICES" FromRole="RECENT_LOCATION" ToRole="DEVICES" />
+        </EntityType>
+        <EntityType Name="RULES">
+          <Key>
+            <PropertyRef Name="rules_id" />
+          </Key>
+          <Property Name="rules_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="allow_copy_paste" Type="Boolean" />
+          <Property Name="allow_email" Type="Boolean" />
+          <Property Name="allow_camera" Type="Boolean" />
+          <Property Name="allow_microphone" Type="Boolean" />
+          <Property Name="allow_airplan_mode" Type="Boolean" />
+          <Property Name="allow_screen_capture" Type="Boolean" />
+          <Property Name="allow_clipboard" Type="Boolean" />
+          <Property Name="allow_home_key" Type="Boolean" />
+          <Property Name="dowload_type" Type="Int32" />
+          <Property Name="allow_share" Type="Boolean" />
+          <NavigationProperty Name="RULES_APP" Relationship="BYODModel.FK_RULES_APP_RULES" FromRole="RULES" ToRole="RULES_APP" />
+          <NavigationProperty Name="USERS" Relationship="BYODModel.FK_USERS_RULES" FromRole="RULES" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="RULES_APP">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="rules_id" Type="Int32" />
+          <Property Name="app_id" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="APPLICATIONS" Relationship="BYODModel.FK_RULES_APP_APPLICATIONS" FromRole="RULES_APP" ToRole="APPLICATIONS" />
+          <NavigationProperty Name="RULES" Relationship="BYODModel.FK_RULES_APP_RULES" FromRole="RULES_APP" ToRole="RULES" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="rules_id" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="DEVICES" Relationship="BYODModel.FK_DEVICES_USERS" FromRole="USERS" ToRole="DEVICES" />
+          <NavigationProperty Name="RULES" Relationship="BYODModel.FK_USERS_RULES" FromRole="USERS" ToRole="RULES" />
+        </EntityType>
+        <Association Name="FK_RULES_APP_APPLICATIONS">
+          <End Role="APPLICATIONS" Type="BYODModel.APPLICATIONS" Multiplicity="0..1" />
+          <End Role="RULES_APP" Type="BYODModel.RULES_APP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICATIONS">
+              <PropertyRef Name="app_id" />
+            </Principal>
+            <Dependent Role="RULES_APP">
+              <PropertyRef Name="app_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEVICES_USERS">
+          <End Role="USERS" Type="BYODModel.USERS" Multiplicity="0..1" />
+          <End Role="DEVICES" Type="BYODModel.DEVICES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="DEVICES">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECENT_LOCATION_DEVICES">
+          <End Role="DEVICES" Type="BYODModel.DEVICES" Multiplicity="0..1" />
+          <End Role="RECENT_LOCATION" Type="BYODModel.RECENT_LOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEVICES">
+              <PropertyRef Name="device_id" />
+            </Principal>
+            <Dependent Role="RECENT_LOCATION">
+              <PropertyRef Name="device_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RULES_APP_RULES">
+          <End Role="RULES" Type="BYODModel.RULES" Multiplicity="0..1" />
+          <End Role="RULES_APP" Type="BYODModel.RULES_APP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RULES">
+              <PropertyRef Name="rules_id" />
+            </Principal>
+            <Dependent Role="RULES_APP">
+              <PropertyRef Name="rules_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERS_RULES">
+          <End Role="RULES" Type="BYODModel.RULES" Multiplicity="0..1" />
+          <End Role="USERS" Type="BYODModel.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RULES">
+              <PropertyRef Name="rules_id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="rules_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BYODModelStoreContainer" CdmEntityContainer="BYODEntities">
+          <EntitySetMapping Name="APPLICATIONS">
+            <EntityTypeMapping TypeName="BYODModel.APPLICATIONS">
+              <MappingFragment StoreEntitySet="APPLICATIONS">
+                <ScalarProperty Name="app_id" ColumnName="app_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="apk_name" ColumnName="apk_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEVICES">
+            <EntityTypeMapping TypeName="BYODModel.DEVICES">
+              <MappingFragment StoreEntitySet="DEVICES">
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="imei" ColumnName="imei" />
+                <ScalarProperty Name="platform" ColumnName="platform" />
+                <ScalarProperty Name="last_login_time" ColumnName="last_login_time" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+                <ScalarProperty Name="date_stolen" ColumnName="date_stolen" />
+                <ScalarProperty Name="isstolen" ColumnName="isstolen" />
+                <ScalarProperty Name="isremove" ColumnName="isremove" />
+                <ScalarProperty Name="date_remove" ColumnName="date_remove" />
+                <ScalarProperty Name="iswipe" ColumnName="iswipe" />
+                <ScalarProperty Name="date_wipe" ColumnName="date_wipe" />
+                <ScalarProperty Name="reg_id" ColumnName="reg_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECENT_LOCATION">
+            <EntityTypeMapping TypeName="BYODModel.RECENT_LOCATION">
+              <MappingFragment StoreEntitySet="RECENT_LOCATION">
+                <ScalarProperty Name="recent_location_id" ColumnName="recent_location_id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longtitude" ColumnName="longtitude" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RULES">
+            <EntityTypeMapping TypeName="BYODModel.RULES">
+              <MappingFragment StoreEntitySet="RULES">
+                <ScalarProperty Name="rules_id" ColumnName="rules_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="allow_copy_paste" ColumnName="allow_copy_paste" />
+                <ScalarProperty Name="allow_email" ColumnName="allow_email" />
+                <ScalarProperty Name="allow_camera" ColumnName="allow_camera" />
+                <ScalarProperty Name="allow_microphone" ColumnName="allow_microphone" />
+                <ScalarProperty Name="allow_airplan_mode" ColumnName="allow_airplan_mode" />
+                <ScalarProperty Name="allow_screen_capture" ColumnName="allow_screen_capture" />
+                <ScalarProperty Name="allow_clipboard" ColumnName="allow_clipboard" />
+                <ScalarProperty Name="allow_home_key" ColumnName="allow_home_key" />
+                <ScalarProperty Name="dowload_type" ColumnName="dowload_type" />
+                <ScalarProperty Name="allow_share" ColumnName="allow_share" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RULES_APP">
+            <EntityTypeMapping TypeName="BYODModel.RULES_APP">
+              <MappingFragment StoreEntitySet="RULES_APP">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rules_id" ColumnName="rules_id" />
+                <ScalarProperty Name="app_id" ColumnName="app_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BYODModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="BYODModel.USERS">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="rules_id" ColumnName="rules_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

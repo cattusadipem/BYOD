@@ -1,0 +1,68 @@
+﻿@model BYOD.Models.USERS
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div id="left">
+    <div style="height: 80px"></div>
+    <div class="subnav">
+        <ul class="subnav-menu">
+            <li>
+                <a href="@Url.Content("~/Users/")">Back</a>
+            </li>
+            <div style="height: 20px"></div>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+
+                <div class="widget">
+                    <h3 class="section-title first-title"><i class="icon-table"></i>Edit User</h3>
+                    <div class="widget-content-white glossed">
+                        <div class="padded">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="a_dv1">
+                                    <div>
+                                        <label>Username: </label>
+                                        @Html.HiddenFor(model => model.user_id)
+                                        @Html.TextBoxFor(model => model.username, new { style = "width: 286px;", placeholder = "Username" })
+                                        @Html.ValidationMessageFor(model => model.username)
+                                        @*<input style="width: 286px;" type="search" name="uus" placeholder="Username">*@
+                                    </div>
+                                    <div>
+                                        <label>Password: </label>
+                                        @Html.TextBoxFor(model => model.password, new { style = "width: 286px;", placeholder = "Password" })
+                                        @Html.ValidationMessageFor(model => model.password)
+                                    </div>
+                                    <div>
+                                        <label>Name: </label>
+                                        @Html.TextBoxFor(model => model.name, new { style = "width: 286px;", placeholder = "Name" })
+                                        @Html.ValidationMessageFor(model => model.name)
+                                    </div>
+                                    <div>
+                                        <label>Email: </label>
+                                        @Html.TextBoxFor(model => model.email, new { style = "width: 286px;", placeholder = "Email" })
+                                        @Html.ValidationMessageFor(model => model.email)
+                                    </div>
+                                    <div>
+                                        <label>Rule: </label>                                        
+                                        @Html.DropDownList("rules_id", (IEnumerable<SelectListItem>)ViewBag.rules_id, new { style = "width: 300px;" })
+                                    </div>
+                                </div>
+                                <div class="submit">
+                                    <input type="submit" value="Save" class="btn btn-info">
+                                </div>
+                                <div>&nbsp;</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

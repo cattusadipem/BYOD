@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="14014b079fdc41829402490c153f8fa3" Name="Diagram1">
+        <EntityTypeShape EntityType="BYODModel.APPLICATIONS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYODModel.DEVICES" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYODModel.RECENT_LOCATION" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYODModel.RULES" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYODModel.RULES_APP" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYODModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYODModel.USERS" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="BYODModel.FK_RULES_APP_APPLICATIONS" ManuallyRouted="false" />
+        <AssociationConnector Association="BYODModel.FK_DEVICES_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="BYODModel.FK_RECENT_LOCATION_DEVICES" ManuallyRouted="false" />
+        <AssociationConnector Association="BYODModel.FK_RULES_APP_RULES" ManuallyRouted="false" />
+        <AssociationConnector Association="BYODModel.FK_USERS_RULES" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

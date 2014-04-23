@@ -1,0 +1,58 @@
+﻿@model BYOD.Models.USERS
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div id="left">
+    <div style="height: 80px"></div>
+    <div class="subnav">
+        <ul class="subnav-menu">
+            <li>
+                <a href="@Url.Content("~/Users/")">Back</a>
+            </li>
+            <div style="height: 20px"></div>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+
+                <div class="widget">
+                    <h3 class="section-title first-title"><i class="icon-table"></i>Are you sure you want to delete this?</h3>
+                    <div class="widget-content-white glossed">
+                        <div class="padded">
+                            <div class="a_dv">
+                                <div>
+                                    <span>Username: </span>
+                                    @Html.DisplayFor(model => model.username)
+                                    @*<input style="width: 286px;" type="search" name="uus" placeholder="Username">*@
+                                </div>
+                                <div>
+                                    <span>Password: </span>
+                                    @Html.DisplayFor(model => model.password)
+                                </div>
+                                <div>
+                                    <span>Name: </span>
+                                    @Html.DisplayFor(model => model.name)
+                                </div>
+                                <div>
+                                    <span>Email: </span>
+                                    @Html.DisplayFor(model => model.email)
+                                </div>
+                            </div>
+                            @using (Html.BeginForm()) {
+                                @Html.AntiForgeryToken()
+                                <div class="submit">
+                                    <input type="submit" value="OK" class="btn btn-primary">
+                                    <a href="@Url.Content("~/Users/")" class="btn btn-info">Back</a>
+                                </div>
+                                <div>&nbsp;</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

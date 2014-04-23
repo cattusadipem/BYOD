@@ -1,0 +1,150 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using BYOD.Models;
+using System.Data;
+using System.Net;
+
+namespace BYOD.Controllers
+{
+    [CustomAuthorize]
+    public class DevicesController : Controller
+    {
+        //
+        // GET: /Devices/
+        private BYODEntities db = new BYODEntities();
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: /Devices/AddDevice
+        public ActionResult AddDevice()
+        {
+
+            return View();
+        }
+
+        //POST: /Devices/AddDevice
+        // To protect from overposting attacks
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddDevice([Bind(Include = "user_id, rules_id, description")]DEVICES device)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.DEVICES.Add(device);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Unable to save changes. An error has occurred.");
+            }
+            return View();
+        }
+
+        public ActionResult Manager()
+        {
+            return View();
+        }
+
+        //GET: /Devices/Manager/?
+        //public ActionResult Manager(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    DEVICES device = db.DEVICES.Find(id);
+
+        //    if (device == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    return View(device);
+        //}
+
+        //POST: /Devices/Edit/?
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "rules_id, description")]DEVICES device)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(device).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");   
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Unable to save changes. An error has occurred.");
+            }
+            return View();
+        }
+
+        //POST: /Devices/Delete/?
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                DEVICES device = db.DEVICES.Find(id);
+                db.DEVICES.Remove(device);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Unable to save changes. An error has occurred.");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult SendMessage()
+        {
+            return View();
+        }
+
+        public ActionResult LockDevice()
+        {
+            return View();
+        }
+
+        public ActionResult WipeDevice()
+        {
+            return View();
+        }
+
+        public ActionResult FindDevice()
+        {
+            return View();
+        }
+
+        public ActionResult TrackDevice()
+        {
+            return View();
+        }
+
+        //Ensuring that Database Connections Are Not Left Open
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

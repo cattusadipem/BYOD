@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Remote Access";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<div id="left">
+    <div style="height: 80px"></div>
+    <div style="height: 200px">
+        <img src="" style="height: 180px" />
+        (Name)
+				(root)
+    </div>
+    <div class="subnav">
+        <ul class="subnav-menu">
+            <li>
+                <a href="@Url.Content("~/RemoteAccess/Info")">Device Info</a>
+            </li>
+            <div style="height: 20px"></div>
+            <li>
+                <a href="@Url.Content("~/RemoteAccess/Manager")">File Manager</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+
+                <div class="widget">
+                    <h3 class="section-title first-title"><i class="icon-table"></i>Main info</h3>
+                    <div class="widget-content-white glossed">
+                        <div class="padded">
+                            <div class="rm_info">
+                                <label class="rm_title">Username</label>
+                                <label class="rm_title">Device Model</label>
+                                <label class="rm_element">Samuel</label>
+                                <label class="rm_element">Samsung</label>
+                                <label class="rm_title">Phone Number</label>
+                                <label class="rm_title">IMEI</label>
+                                <label class="rm_element">12312142</label>
+                                <label class="rm_element">12423235</label>
+                                <label class="rm_title">Platform</label>
+                                <label class="rm_title">Description</label>
+                                <label class="rm_element">Android 4.1</label>
+                                <label class="rm_element">asdsad</label>
+                            </div>
+                            <div style="clear: left;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

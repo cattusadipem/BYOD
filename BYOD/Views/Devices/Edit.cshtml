@@ -1,0 +1,59 @@
+﻿@model BYOD.ViewModels.DeviceViewModel
+
+@{
+    ViewBag.Title = "Devices";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div id="left">
+    <div style="height: 80px"></div>
+    <div class="subnav">
+        <ul class="subnav-menu">
+            <li>
+                <a href="@Url.Content("~/Devices/")">Back</a>
+            </li>
+            <div style="height: 20px"></div>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+
+                <div class="widget">
+                    <h3 class="section-title first-title"><i class="icon-table"></i>Edit Device @Html.DisplayFor(Model => Model.devices.model)</h3>
+                    <div class="widget-content-white glossed">
+                        <div class="padded">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="a_dv">
+                                    <div>
+                                        <label>Rule: </label>
+                                        @Html.HiddenFor(model => model.devices.device_id)
+                                        @Html.DropDownListFor(x => x.devices.rules_id, Model.rules_list, "---Select Rule---")
+                                        @Html.ValidationMessageFor(model => model.devices.rules_id)
+
+                                    </div>
+                                    <div>
+                                        <label>Description: </label>
+                                        @Html.TextAreaFor(model => model.devices.description, new { style = "width: 286px;"})
+                                        @Html.ValidationMessageFor(model => model.devices.description)
+                                    </div>
+
+                                </div>
+                                <div class="submit">
+                                    <input type="submit" value="Save" class="btn btn-primary">
+                                    <a href="@Url.Content("~/Devices/")" class="btn btn-info">Back</a>
+                                </div>
+                                <div>&nbsp;</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
